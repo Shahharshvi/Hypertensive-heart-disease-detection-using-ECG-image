@@ -4,4 +4,4 @@ ECG_IMAGES_DATASET
 
 config.py
 
-git rm --cached trial.py test.py test1.ipynb test1 copy.ipynb
+git rm --cached trial.py test.py test1.ipynb test1_copy.ipynb
