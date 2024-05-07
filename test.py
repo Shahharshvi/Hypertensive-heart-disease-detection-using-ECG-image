@@ -18,8 +18,8 @@ import os
 from natsort import natsorted
 from sklearn.decomposition import PCA
 import google.generativeai as genai
+from config import GOOGLE_API_KEY
 
-GOOGLE_API_KEY='AIzaSyAFZQvT4Ndau5ifq8ywYMSSF381-GvjQe8'
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('gemini-pro')

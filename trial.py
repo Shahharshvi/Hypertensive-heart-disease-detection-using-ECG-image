@@ -18,8 +18,8 @@ import os
 from natsort import natsorted
 from sklearn.decomposition import PCA
 import google.generativeai as genai
+from config import GOOGLE_API_KEY
 
-GOOGLE_API_KEY='AIzaSyAFZQvT4Ndau5ifq8ywYMSSF381-GvjQe8'
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('gemini-pro')
@@ -249,41 +249,41 @@ if uploaded_file is not None:
     # result2 = pca_loaded_model.transform(test_final.iloc[:,-256:])
     # final_df = pd.DataFrame(result)
 
-    # loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\Heart_Disease_Prediction_using_ECG.pkl')
-    # result = loaded_model.predict(final_df)
-    # print(result[0])
-    # print(result)
-    # result = loaded_model.predict(test_final)
-    # if result[0] == 0:
-    #   st.write("You ECG corresponds to Myocardial Infarction")
-
-    # if result[0] == 1:
-    #   st.write("You ECG corresponds to Abnormal Heartbeat")
-
-    # if result[0] == 2:
-    #   st.write("Your ECG is Normal")
-
-    # if result[0] == 3:
-    #   st.write("You ECG corresponds to History of Myocardial Infarction")
-    # loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\Heart_Disease_Prediction_using_ECG.pkl')
-    # loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\svm_model_test.pkl')
     final_df=test_final.iloc[:,-256:]
-
     loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\Heart_Disease_Prediction_using_ECG.pkl')
+    result = loaded_model.predict(final_df)
+    print(result[0])
+    print(result)
+    result = loaded_model.predict(test_final)
+    if result[0] == 0:
+      st.write("You ECG corresponds to Myocardial Infarction")
+
+    if result[0] == 1:
+      st.write("You ECG corresponds to Abnormal Heartbeat")
+
+    if result[0] == 2:
+      st.write("Your ECG is Normal")
+
+    if result[0] == 3:
+      st.write("You ECG corresponds to History of Myocardial Infarction")
+    loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\Heart_Disease_Prediction_using_ECG.pkl')
+    loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\svm_model_test.pkl')
+
+    # loaded_model = joblib.load('D:\\Harshvi_Ddrive\\INIT\\final_project_presentation\\Heart_Disease_Prediction_using_ECG.pkl')
     # Assuming final_df is defined somewhere above this code
-    result1 = loaded_model.predict(final_df)
-    if result == threshold[0]:
-        st.write("You ECG corresponds to Myocardial Infarction")
-        prompt="You ECG corresponds to Myocardial Infarction"
-    elif result == threshold[1]:
-        st.write("You ECG corresponds to Abnormal Heartbeat")
-        prompt="You ECG corresponds to Abnormal Heartbeat"
-    elif result== threshold[3]:
-        st.write("Your ECG is Normal")
-        prompt="Your ECG is Normal"
-    else:
-        st.write("You ECG corresponds to History of Myocardial Infarction")
-        prompt="You ECG corresponds to History of Myocardial Infarction"
+    # result1 = loaded_model.predict(final_df)
+    # if result == threshold[0]:
+    #     st.write("You ECG corresponds to Myocardial Infarction")
+    #     prompt="You ECG corresponds to Myocardial Infarction"
+    # elif result == threshold[1]:
+    #     st.write("You ECG corresponds to Abnormal Heartbeat")
+    #     prompt="You ECG corresponds to Abnormal Heartbeat"
+    # elif result== threshold[3]:
+    #     st.write("Your ECG is Normal")
+    #     prompt="Your ECG is Normal"
+    # else:
+    #     st.write("You ECG corresponds to History of Myocardial Infarction")
+    #     prompt="You ECG corresponds to History of Myocardial Infarction"
 
     print(prompt)
     response = model.generate_content(prompt)
